@@ -1,0 +1,138 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2025-06-12T09:40:48Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/268243633",
+        "addr:city": "Salzburg",
+        "addr:housenumber": "8",
+        "addr:postcode": "5020",
+        "addr:street": "Makartplatz",
+        "alt_name": "Tanzmeisterhaus",
+        "fee": "yes",
+        "name": "Mozart Residence",
+        "name:ru": "Дом Моцарта",
+        "name:zh": "莫扎特故居",
+        "opening_hours": "Jul-Aug: Mo-Su,PH 08:30-19:00; Sep-Jun: Mo-Su,PH 09:00-17:30",
+        "phone": "+43-662-874227-40",
+        "tourism": "museum",
+        "website": "https://www.salzburg.info/de/sehenswertes/museen/mozart-wohnhaus",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/1944_-_Salzburg_-_Mozart_Wohnhaus%2C_Makartplatz_%28cropped%29.jpg/640px-1944_-_Salzburg_-_Mozart_Wohnhaus%2C_Makartplatz_%28cropped%29.jpg",
+        "wheelchair": "no",
+        "description": "Living house of the Mozart family from 1773 to 1787."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.0437708,
+          47.8026506
+        ]
+      },
+      "id": "node/268243633"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/619716214",
+        "addr:city": "Salzburg",
+        "addr:country": "AT",
+        "addr:housenumber": "5",
+        "addr:postcode": "5020",
+        "addr:street": "Mozartplatz",
+        "check_date": "2025-03-03",
+        "information": "office",
+        "name": "Tourist Info Mozartplatz",
+        "opening_hours": "Mo-Sa 09:00-18:00",
+        "phone": "+43-662-88987-330",
+        "tourism": "information",
+        "website": "https://www.salzburg.info/de/reiseinfos/tourist-info",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/640px-Salzburg_panorama.jpg",
+        "wheelchair": "yes",
+        "description": "TOuristinfo for everything in the city of Salzburg."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.0479529,
+          47.7990581
+        ]
+      },
+      "id": "node/619716214"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1703999657",
+        "description1": "Büste",
+        "material": "metal",
+        "name": "Mozart Memorial",
+        "name:ru": "Памятник Моцарту",
+        "tourism": "artwork",
+        "website": "https://www.salzburg.info/en/travel-info/infos/bust-of-mozart-on-the-kapuzinerberg_az_5015",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Salzburg_-_pam%C3%A1tn%C3%AD_Mozarta.jpg",
+        "wikimedia_commons": "File:Wolfgang_Amadeus_Mozart-Kapuzinerberg,_Salzburg.jpg",
+        "description" : "A 1877 memorial for Mozart realised by Edmund Helmer."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.0489129,
+          47.8022049
+        ]
+      },
+      "id": "node/1703999657"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1849526053",
+        "artist_name": "Marina Abramovic",
+        "artwork_type": "sculpture",
+        "name": "Spirit of Mozart",
+        "start_date": "2004",
+        "tourism": "artwork",
+        "website": "https://www.salzburg.info/en/salzburg/creative-salzburg/art-in-public-room/walk-of-modern-art/spirit-of-mozart",
+        "image" : "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Marina_Abramovic_-_%22Spirit_of_Mozart%22_04.jpg/640px-Marina_Abramovic_-_%22Spirit_of_Mozart%22_04.jpg",
+        "wikidata": "Q15129019",
+        "wikimedia_commons": "Category:Spirit_of_Mozart",
+        "wikipedia": "de:Spirit of Mozart (Salzburg)",
+        "description": "Art project done at Salzburg Walk of Modern Art by the artist Marina Abramovic."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.0443773,
+          47.801455
+        ]
+      },
+      "id": "node/1849526053"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4494595833",
+        "artist_name": "Markus Lüpertz",
+        "artwork_type": "sculpture",
+        "material": "bronze",
+        "name": "Hommage to Mozart",
+        "start_date": "2005",
+        "tourism": "artwork",
+        "website": "https://www.salzburg.info/en/salzburg/creative-salzburg/art-in-public-room/walk-of-modern-art/mozart-hommage",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/L%C3%BCpertz_Salzburg_Mozart_side.jpg/640px-L%C3%BCpertz_Salzburg_Mozart_side.jpg",
+        "description" : "A bizzare statue of Mozart realized by the artist Markus Lüpertz."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.0383471,
+          47.8023237
+        ]
+      },
+      "id": "node/4494595833"
+    }
+  ]
+}
