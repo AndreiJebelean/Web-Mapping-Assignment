@@ -133,6 +133,30 @@
         ]
       },
       "id": "node/4494595833"
-    }
+    },
+
+    {
+  "type": "Feature",
+  "properties": {
+    "@id": "poi/mozarts_birthplace",
+    "name": "Mozart’s Birthplace",
+    "artist_name": "Wolfgang Amadeus Mozart",
+    "properties_type": "birthplace / museum",
+    "material": "historic building",
+    "start_date": "27 January 1756",
+    "tourism": "museum",
+    "website": "https://mozarteum.at/en/mozart-museums/mozarts-birthplace",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Mozarts_birthplace_Salzburg.jpg/640px-Mozarts_birthplace_Salzburg.jpg",
+    "description": "The Hagenauerhaus on Getreidegasse 9, where Mozart was born and lived until 1773; now a museum displaying original instruments, documents and period rooms."
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      13.04333,
+      47.80000
+    ]
+  },
+  "id": "poi/mozarts_birthplace"
+}
   ]
 }
