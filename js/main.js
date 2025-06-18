@@ -157,3 +157,20 @@ L.marker([centerLat, centerLng])
     .addTo(map)
     .bindPopup("Mozart Tour Starts Here!")
     .openPopup();
+
+
+    //--- Part 10 (only done by me): Custom Legend for better visability ---
+
+var legend = L.control({ position: 'bottomleft' });
+
+legend.onAdd = function () {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.innerHTML += '<h4>Legend</h4>';
+    div.innerHTML += '<div><img src="css/images/statue-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Art</div>';
+    div.innerHTML += '<div><img src="css/images/building-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Residences</div>';
+    div.innerHTML += '<div><img src="css/images/info-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Tourist Info</div>';
+    return div;
+};
+
+legend.addTo(map);
+

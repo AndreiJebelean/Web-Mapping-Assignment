@@ -52,7 +52,7 @@
         "website": "https://www.salzburg.info/de/reiseinfos/tourist-info",
         "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/640px-Salzburg_panorama.jpg",
         "wheelchair": "yes",
-        "description": "TOuristinfo for everything in the city of Salzburg."
+        "description": "Touristinfo for everything in the city of Salzburg."
       },
       "geometry": {
         "type": "Point",

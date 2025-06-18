@@ -22,3 +22,38 @@ body{
 	position:fixed;
 	border:1px #444 solid;
 }
+
+.info.legend {
+    background: rgba(114, 18, 18, 0.6);  /* semi-transparent black for subtle background */
+    padding: 15px 20px;
+    border-radius: 8px;
+    line-height: 1.6;
+    box-shadow: 0 0 12px rgba(0,0,0,0.8);
+    font-size: 16px;      /* bigger font size */
+    color: white;         /* white text */
+    max-width: 220px;
+    border: 1px solid #444;
+}
+
+.info.legend h4 {
+    margin: 0 0 10px 0;
+    font-size: 20px;      /* bigger title */
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #666;
+    padding-bottom: 6px;
+    color: white;         /* white title */
+}
+
+.leaflet-popup-content {
+  font-size: 18px;        /* bigger text */
+  max-width: 300px;       /* wider popup */
+  line-height: 1.4;
+}
+
+.leaflet-popup-content img {
+  max-width: 280px;       /* bigger images inside popup */
+  height: auto;
+  margin-top: 10px;
+  border-radius: 6px;
+}
