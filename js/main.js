@@ -75,14 +75,12 @@ function createMarker(feature, icon) {
   }
   marker.bindPopup(popupContent);
 
-  // Fly to and open popup on click
   marker.on('click', function () {
     var pos = marker.getLatLng();
     map.flyTo([pos.lat - 0.0015, pos.lng], 18, { duration: 1.5 });
     setTimeout(() => marker.openPopup(), 1600);
   });
 
-  // Enlarge icon on hover
   marker.on('mouseover', function () {
     marker.setIcon(L.icon({
       iconUrl: icon.options.iconUrl,
@@ -92,7 +90,6 @@ function createMarker(feature, icon) {
     }));
   });
 
-  // Restore original size on mouse out
   marker.on('mouseout', function () {
     marker.setIcon(icon);
   });
@@ -100,7 +97,10 @@ function createMarker(feature, icon) {
   return marker;
 }
 
-//--- Part 7: Load GeoJSON and distribute features ---
+//--- Part 7 and 8: Load GeoJSON and distribute features + layer control ---
+var features = {};
+var layerControl = L.control.layers(baseMaps, features, { position: 'topleft' }).addTo(map);
+
 fetch('data/mozart.geojson')
   .then(response => response.json())
   .then(data => {
@@ -109,7 +109,6 @@ fetch('data/mozart.geojson')
       var nameLower = (feature.properties.name || "").toLowerCase();
       var icon;
 
-      // Choose icon based on type
       if (tourismType === "information") {
         icon = iconInfo;
       } else if (
@@ -132,45 +131,97 @@ fetch('data/mozart.geojson')
       }
     });
 
-    // Add all layers to map
     artLayer.addTo(map);
     residenceLayer.addTo(map);
     touristInfoLayer.addTo(map);
 
-    // Add to layer control
-    features["Art"] = artLayer;
-    features["Residences"] = residenceLayer;
-    features["Tourist Info"] = touristInfoLayer;
-
     layerControl.addOverlay(artLayer, "Art");
     layerControl.addOverlay(residenceLayer, "Residences");
     layerControl.addOverlay(touristInfoLayer, "Tourist Info");
-  })
-  .catch(err => console.error('Error loading mozart.geojson:', err));
 
-//--- Part 8: Layer control ---
-var features = {};
-var layerControl = L.control.layers(baseMaps, features, { position: 'topleft' }).addTo(map);
+    //--- Part 9: Central marker ---
+    L.marker([centerLat, centerLng])
+      .addTo(map)
+      .bindPopup("Mozart Tour Starts Here!")
+      .openPopup();
 
-//--- Part 9: Central marker ---
-L.marker([centerLat, centerLng])
-  .addTo(map)
-  .bindPopup("Mozart Tour Starts Here!")
-  .openPopup();
+    //--- Part 10: Custom Legend ---
+    var legend = L.control({ position: 'bottomleft' });
+
+    legend.onAdd = function () {
+      var div = L.DomUtil.create('div', 'info legend');
+      div.innerHTML += '<h4>Legend</h4>';
+      div.innerHTML += '<div><img src="css/images/statue-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Art</div>';
+      div.innerHTML += '<div><img src="css/images/building-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Residences</div>';
+      div.innerHTML += '<div><img src="css/images/info-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Tourist Info</div>';
+      return div;
+    };
+
+    legend.addTo(map);
 
 
-//--- Part 10 (only done by me): Custom Legend for better visability. ---
 
-var legend = L.control({ position: 'bottomleft' });
 
-legend.onAdd = function () {
-  var div = L.DomUtil.create('div', 'info legend');
-  div.innerHTML += '<h4>Legend</h4>';
-  div.innerHTML += '<div><img src="css/images/statue-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Art</div>';
-  div.innerHTML += '<div><img src="css/images/building-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Residences</div>';
-  div.innerHTML += '<div><img src="css/images/info-icon.png" height="24" style="vertical-align:middle; margin-right:6px;">Tourist Info</div>';
-  return div;
-};
 
-legend.addTo(map);
 
+    // --- Part 11 (after feedback): Tour route with numbered markers ---
+
+    // Step 1: Filter valid point features
+    const validFeatures = data.features.filter(f =>
+      f.geometry && f.geometry.type === "Point" && Array.isArray(f.geometry.coordinates)
+    );
+
+    // Step 2: Sort features by distance to start point (centerLat, centerLng)
+    const startPoint = L.latLng(centerLat, centerLng);
+    const sortedFeatures = validFeatures.slice().sort((a, b) => {
+      const aDist = L.latLng(a.geometry.coordinates[1], a.geometry.coordinates[0]).distanceTo(startPoint);
+      const bDist = L.latLng(b.geometry.coordinates[1], b.geometry.coordinates[0]).distanceTo(startPoint);
+      return aDist - bDist;
+    });
+
+    // Step 3: Convert to Leaflet-friendly [lat, lng]
+    const tourCoordinates = sortedFeatures.map(f => {
+      const [lng, lat] = f.geometry.coordinates;
+      return [lat, lng];
+    });
+
+    // Step 4: Prepend start coordinate if missing
+    const tourStartCoord = [centerLat, centerLng];
+    const alreadyIncluded = tourCoordinates.some(coord =>
+      coord[0] === tourStartCoord[0] && coord[1] === tourStartCoord[1]
+    );
+    if (!alreadyIncluded) {
+      tourCoordinates.unshift(tourStartCoord);
+    }
+
+    console.log("Tour coordinates (ordered):", tourCoordinates);
+
+    // Draw the polyline for the route
+    if (tourCoordinates.length >= 2) {
+      const tourRoute = L.polyline(tourCoordinates, {
+        color: 'orange',
+        weight: 4,
+        opacity: 0.9,
+        dashArray: '8,6'
+      }).addTo(map);
+
+      // Add numbered markers along the route indicating order
+      for (let i = 0; i < tourCoordinates.length; i++) {
+        L.marker(tourCoordinates[i], {
+          icon: L.divIcon({
+            className: 'numbered-marker',
+            html: `<div style="background:orange; border-radius:20%; width:18px; height:18px; line-height:18px; color:#fff; text-align:center; font-weight:bold;">${i + 1}</div>`,
+            iconSize: [24, 24],
+            iconAnchor: [12, 12]
+          }),
+          interactive: false
+        }).addTo(map);
+      }
+
+      // Fit map bounds to the route
+      map.fitBounds(tourRoute.getBounds());
+
+    } else {
+      console.warn("Not enough valid points to draw the tour route.");
+    }
+  });
