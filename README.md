@@ -1,3 +1,8 @@
+
+Link to the map: https://andreijebelean.github.io/Web-Mapping-Assignment/
+
+
+
 Code Explaining: 
 
     Part 1: Create the Map and Add Base Map
